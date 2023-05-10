@@ -1,0 +1,138 @@
+.menu-button {
+  position: relative;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: calc(var(--default-font-size) - 0.3em);
+  width: var(--menu-button-width);
+  height: var(--menu-button-height);
+  border-radius: var(--border-radius);
+  padding: calc(var(--default-padding) * 3);
+  color: var(--default-menu-button-color);
+
+  display: inline-block;
+  overflow: hidden;
+  filter: hue-rotate(0deg);
+  transition: all 0.1s linear;
+  border: 3px solid black;
+}
+
+.menu-button.again {
+  margin: calc(var(--default-margin) * 4) 0;
+}
+
+.menu-button:hover {
+  border: 3px solid transparent;
+}
+
+.menu-button:hover span{
+  position: absolute;
+  display: block;
+}
+
+.menu-button:hover span:nth-child(1){
+  filter: hue-rotate(0deg);
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #3a86ff);
+  animation: animate1 1s linear infinite;
+}
+
+@keyframes animate1 {
+  from {
+    left: -100%;
+  }
+  50%,
+  to {
+    left: 100%;
+  }
+}
+
+.menu-button:hover span:nth-child(2){
+  filter: hue-rotate(60deg);
+  top:-100%;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #3a86ff);
+  animation: animate2 1s linear 0.25s infinite;
+}
+
+@keyframes animate2 {
+  from {
+    top: -100%;
+  }
+  50%,
+  to {
+    top: 100%;
+  }
+}
+
+.menu-button:hover span:nth-child(3){
+  filter: hue-rotate(120deg);
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  
+  background: linear-gradient(270deg, transparent, #3a86ff);
+  animation: animate3 1s linear 0.5s infinite;
+}
+
+@keyframes animate3 {
+  from {
+    height: 3px;
+    right: -100%;
+  }
+  50%,
+  to {
+    height: 2px;
+    right: 100%;
+  }
+}
+
+.menu-button:hover span:nth-child(4){
+  filter: hue-rotate(300deg);
+  bottom: -100%;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #3a86ff);
+  animation: animate4 1s linear 0.75s infinite;
+}
+
+@keyframes animate4 {
+  from {
+    bottom: -100%;
+  }
+  50%,
+  to {
+    bottom: 100%;
+  }
+}
+
+.menu-button:active {
+  animation: shake .2s linear infinite;
+}
+
+@keyframes shake {
+  from {
+    transform: translate(-5%, -2%);
+  }
+  to {
+    transform: translate(5%, 2%);
+  }
+}
+
+.menu-button.start:hover {
+  color: var(--game-title-color);
+}
+
+.menu-button.again:hover {
+  color: var(--play-again-button-color);
+}
+
+.menu-button.reset:hover {
+  color: var(--play-reset-button-color);
+}
