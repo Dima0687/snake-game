@@ -206,6 +206,10 @@ body {
   height: 100%;
 }
 
+.icon:hover {
+  transform: scale(.9);
+}
+
 .icon-path {
   fill: var(--icon-fill-color);
 }
