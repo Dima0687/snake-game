@@ -34,9 +34,14 @@
   /* background color */
   --game-board-bg-color: #d3d3d3;
   --input-name-bg-color: linear-gradient(90deg, #ccc, #fff);
+  --snake-color: #2b6ca4;
+  --food-color: #f00;
 
   /* shadow color */
   --text-shadow: 0 0 4px #000;
+
+  /* border color */
+  --border-color: #000;
 
   /* measurement */
   --control-container-height: 6vmax;
@@ -68,7 +73,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  color: #fff;
+  color: var(--icon-fill-color);
   background-color: transparent;
   user-select: none;
   font-family: 'Press Start 2P', cursive;
@@ -99,6 +104,19 @@ body {
 
 #game-board-container {
   position: relative;
+}
+
+.snake {
+  background-color: var(--snake-color);
+  border: .25vmin solid var(--border-color);
+}
+
+#food {
+  background-color: var(--food-color);
+  height: 50%;
+  width: 50%;
+  transform: translate(50%, 50%);
+  border: .25vmin solid var(--border-color);
 }
 
 .player-info {
