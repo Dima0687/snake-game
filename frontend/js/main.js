@@ -1,7 +1,18 @@
-import { SNAKE_SPEED } from "./components/snake.js";
+import { 
+  SNAKE_SPEED, 
+  update as snakeUpdate,
+  draw as snakeDraw 
+} from "./components/snake.js";
+import { update as gridUpdate } from "./components/grid.js";
+import { update as pointsColorUpdate, getSpeedMultiplier } from "./components/points.js";
+import { update as foodUpdate, draw as foodDraw } from "./components/food.js";
+import { checkDeath, checkWin } from "./components/end.js";
+import { isGameRunning } from "./components/input.js";
+import { draw as fullscreenBtnDraw } from "./components/changeFullscreen.js";
+
+const gameBoard = document.querySelector("[data-game-board]");
 
 let lastRender;
-let snakeSpeedMultiplier = 0.2;
 
 requestAnimationFrame(main);
 function main(currentTime) {
@@ -11,10 +22,9 @@ function main(currentTime) {
   }
 
   const secondsSinceLastRender = (currentTime - lastRender) / 1000;
-  // snakeSpeedMultiplier = getSpeedMultiplier();
 
   requestAnimationFrame(main);
-  if(secondsSinceLastRender < (1 / (SNAKE_SPEED * snakeSpeedMultiplier))) return;
+  if(secondsSinceLastRender < (1 / (SNAKE_SPEED * getSpeedMultiplier()))) return;
 
   lastRender = currentTime;
 
@@ -24,9 +34,20 @@ function main(currentTime) {
 
 
 function update() {
-  console.log("UPDATE");
+  gridUpdate(gameBoard);
+  snakeUpdate();
+  foodUpdate();
+  pointsColorUpdate();
 }
 
 function draw() {
-  console.log("DRAW");
+  if(isGameRunning()) {
+    gameBoard.innerHTML = "";
+  }
+  snakeDraw(gameBoard);
+  foodDraw(gameBoard);
+  fullscreenBtnDraw();
+
+  checkDeath();
+  checkWin();
 }

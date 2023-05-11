@@ -73,13 +73,17 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  color: var(--icon-fill-color);
   background-color: transparent;
   user-select: none;
   font-family: 'Press Start 2P', cursive;
 }
 
 /* GENERAL CSS */
+html,
+body {
+  overscroll-behavior: contain;
+}
+
 html {
   width: 100%;
   max-width: 100%;
@@ -217,6 +221,18 @@ body {
   cursor: pointer;
 }
 
+.control-toggle-elem.mute #icon-speaker-off {
+  display: initial; 
+ }
+ 
+ .control-toggle-elem.mute #icon-speaker-on {
+   display: none;
+ }
+
+.control-toggle-elem.game-is-running .icon-path {
+  fill: #333;
+}
+
 .icon {
   position: absolute;
   inset: 0;
@@ -268,14 +284,15 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  border: 2px solid green;
 }
 
 .menu-title {
   text-transform: uppercase;
   padding-bottom: calc(var(--default-padding) * 4);
   text-shadow: var(--text-shadow);
+  
+  letter-spacing: clamp( 0.25em, 1vmax, 1em);
+  text-align: center;
 }
 
 /* MENU BUTTON HAS OWN CSS */
@@ -312,7 +329,7 @@ body {
 }
 
 .game-end-title.show {
-  display: initial;
+  display: block;
 }
 
 #game-over-title {
@@ -321,6 +338,7 @@ body {
 
 #game-win-title {
   color: var(--game-win-title-color);
+  margin-left: 0.5em;
 }
 
 /* this will be set by js */
@@ -351,6 +369,7 @@ body {
   max-width: 40%;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--player-points-color);
 }
 
 #highscore-title-container {
@@ -362,6 +381,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: start;
+  color: var(--icon-fill-color);
 }
 
 #highscore-title-container .title {
@@ -375,6 +395,7 @@ body {
 }
 
 #highscore-heading-container {
+  color: var(--icon-fill-color);
   font-size: clamp(.8em, 1.2vmax, 2em);
   grid-area: 3 / 1 / 4 / 4;
   width: 100%;
@@ -417,11 +438,50 @@ body {
   width: 100%;
   height: 100%;
   overflow-y: auto;
+  cursor: pointer;
 }
+
 
 .highscore {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: calc(var(--default-padding) * 3) var(--default-padding);
+}
+
+
+/* MESSAGE BOX */
+/* DYNAMICALLY OVER JS */
+
+.msg-box {
+  position: absolute;
+  top: var(--control-container-height);
+  right: 0;
+  z-index: 30;
+
+  width: 50%;
+  max-width: calc(100% - 2em);
+  height: max-content;
+
+  color: red;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  line-height: 1.5em;
+  background-color: #ffffff80;
+  margin: 0 1em;
+  padding: 1em;
+  border-radius: 15px;
+}
+
+.msg-box #triangle {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  background-color: #ffffff80;
+  clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+  top: -0.99em;
+  right: 2%;
 }

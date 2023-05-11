@@ -86,8 +86,8 @@
         </button>
       </section>
       <!-- GAME END MENU -->
-      <section class="menu-container">
-        <h2 class="menu-title"><span id="game-over-title" class="game-end-title" data-game-over-title>game over</span><span id="game-win-title" class="game-end-title show" data-game-win-title>win</span></h2>
+      <section class="menu-container" data-game-end-menu>
+        <h2 class="menu-title"><span id="game-over-title" class="game-end-title" data-game-over-title>game over</span><span id="game-win-title" class="game-end-title" data-game-win-title>win</span></h2>
         <p class="player-info small">Points: <span class="player-points small" data-player-points>0</span></p>
         <button title="play again" class="menu-button again" data-play-again-btn>
           <span></span>
@@ -124,7 +124,13 @@
         <h3 class="highscore-heading points">points</h3>
       </article>
       <!-- HIGHSCORES -->
-      <article id="highscore-container"></article>
+      <article id="highscore-container" data-highscore-container>
+        <p class="highscore">
+          <span class="date">28.12.22</span>
+          <span class="name">Dima</span>
+          <span class="points">200</span>
+        </p>
+      </article>
     </section>
   </main>
 </body>

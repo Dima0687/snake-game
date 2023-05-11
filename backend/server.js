@@ -5,7 +5,7 @@ import db from "./utils/db.js";
 import * as url from "url";
 import path from "path";
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
-// import { highscoreRouter } from './route/highscoreRouter.js';
+import highscoreRouter from './routes/highscore.routes.js';
 
 
 // env variables
@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.static(frontend));
 
 // use router for routing
-// app.use(highscoreRouter);
+app.use(highscoreRouter);
 
 export function startServer() {
 
