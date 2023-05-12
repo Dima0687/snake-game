@@ -57,7 +57,7 @@ function resetGameValues() {
   resetFood();
 }
 
-export function roundEnded({ gameOver = false} = {}) {
+export async function roundEnded({ gameOver = false} = {}) {
   const { currentPoints, newColor } = pointsSetup;
 
   if(gameOver && isGameRunning()) {
@@ -71,13 +71,13 @@ export function roundEnded({ gameOver = false} = {}) {
   }
   
   if(isGameRunning()) {
-    createHighscore({
+    await createHighscore({
       name: nameDisplay.textContent,
       points: currentPoints,
       color: newColor,
       date: getDate()
     });
-    getHighscores();
+    await getHighscores();
   }
   stopMusicObj();
 }
