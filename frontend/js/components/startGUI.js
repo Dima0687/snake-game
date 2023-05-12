@@ -23,9 +23,11 @@ function startGame() {
 
   playMusic();
   toggleFullscreenClassOnStart();
-  resetFood();
   
-  startMovement();
+  setTimeout(() => {
+    resetFood();
+    startMovement();
+  }, 400);
 
   // pointsSetup.currentPoints = 2_200_200;
 }
