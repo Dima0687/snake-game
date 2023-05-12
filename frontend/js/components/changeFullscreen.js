@@ -2,16 +2,17 @@ import { isGameRunning } from "./input.js";
 
 const toggleFullscreenBtn = document.querySelector("[data-fullscreen-toggle]");
 const gameBoardContainer = document.querySelector("[data-game-board-container]");
+const TIME_TILL_MSG_REMOVE_IN_MS = 5000;
 
 function toggleFullscreen() {
   let orientation = screen.orientation.type;
 
   if(document.fullscreenElement && isGameRunning())
   {
-    showMessageBox({
-      text1: "You shouldn't do that while the game is running!",
-      text2: "But you can press escape or device defaults for leaving the fullscreen!",
-    });
+    showMessageBox(
+      "You shouldn't do that while the game is running!",
+      "Anyway you can press escape or device defaults for leaving the fullscreen!"
+    );
   }
   else if(document.fullscreenElement && !isGameRunning()) {
     document.exitFullscreen();
@@ -29,30 +30,28 @@ function toggleFullscreen() {
   }
 }
 
-function showMessageBox(obj) {
-  createMessageBox(obj);
+function showMessageBox(...messages) {
+  createMessageBox(messages);
 }
 
-function createMessageBox({ text1 = "", text2 = "" } = {}) {
+function createMessageBox(messages) {
   const messageBox = document.createElement("div");
   messageBox.className = "msg-box";
 
   const triangle = document.createElement("span");
   triangle.id = "triangle";
 
-  messageBox.append(triangle);
+  if(!messages.length) return;
+  messages = messages.map((msg) => {
+    if(msg === "") return;
 
-  if(text1 !== "") {
-    const msg1 = document.createElement("p");
-    msg1.textContent = text1;
-    messageBox.append(msg1);
-  }
+    const msgElem = document.createElement("p");
+    msgElem.textContent = msg;
+    
+    return msgElem;
+  });
 
-  if(text2 !== "") {
-    const msg2 = document.createElement("p");
-    msg2.textContent = text2;
-    messageBox.append(msg2);
-  }
+  messageBox.append(triangle, ...messages);
 
   gameBoardContainer.append(messageBox);
 
@@ -64,7 +63,7 @@ function removeMessageBox(msgBox) {
 
   setTimeout(() => {
     msgBox.remove();
-  }, 2000);
+  }, TIME_TILL_MSG_REMOVE_IN_MS );
 }
 
 function toggleColorOfFullscreenBtn() {
