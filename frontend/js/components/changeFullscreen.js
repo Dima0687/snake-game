@@ -1,6 +1,6 @@
 import { isGameRunning } from "./input.js";
 
-export const toggleFullscreenBtn = document.querySelector("[data-fullscreen-toggle]");
+const toggleFullscreenBtn = document.querySelector("[data-fullscreen-toggle]");
 const gameBoardContainer = document.querySelector("[data-game-board-container]");
 const TIME_TILL_MSG_REMOVE_IN_MS = 5000;
 
@@ -97,6 +97,12 @@ function toggleColorOfFullscreenBtn() {
   }
 
   toggleFullscreenBtn.classList.remove("game-is-running");
+}
+
+export function toggleFullscreenClassOnStart() {
+  if(!document.fullscreenElement) {
+    toggleFullscreenBtn.classList.add("fullscreen");
+  }
 }
 
 export function draw() {
