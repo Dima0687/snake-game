@@ -6,6 +6,7 @@ import {
   startGameSound,
 } from './interface.js';
 import { toggleFullscreenClassOnStart} from './changeFullscreen.js';
+import { resetFood } from './food.js';
 
 // import { pointsSetup } from './points.js';
 
@@ -24,6 +25,7 @@ function startGame() {
   startGameSound();
   startGameMusic();
   toggleFullscreenClassOnStart();
+  resetFood();
   startMovement();
 
   // pointsSetup.currentPoints = 2_200_200;
