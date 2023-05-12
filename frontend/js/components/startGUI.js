@@ -4,7 +4,7 @@ import {
   setNameDisplayValue,
   playMusic
 } from './interface.js';
-import { toggleFullscreenClassOnStart} from './changeFullscreen.js';
+import { toggleFullscreen } from './changeFullscreen.js';
 import { resetFood } from './food.js';
 
 // import { pointsSetup } from './points.js';
@@ -22,8 +22,8 @@ function startGame() {
   toggleMenuVisibility({ elem: this });
 
   playMusic();
-  toggleFullscreenClassOnStart();
-  startMovement();
+  toggleFullscreen({ clickOnStartBtn: true });
+  setTimeout(() => startMovement(), 200);
   // pointsSetup.currentPoints = 2_200_200;
 }
 
