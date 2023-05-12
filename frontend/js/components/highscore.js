@@ -59,16 +59,6 @@ function updateDOMHighscoreList(highscores) {
   highscoreContainer.replaceChildren(...highscores);
 }
 
-
-
-highscoreContainer.addEventListener("click",  function() {
-  console.log(
-    this.scrollHeight,
-    Math.ceil(this.scrollTop),
-    this.offsetHeight,
-  );
-})
-
 function scrollBackToTop() {
   
   if(
