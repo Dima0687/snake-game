@@ -15,6 +15,7 @@ import { pointsSetup } from './points.js';
 let soundPlayTimeDelayMs = 600;
 let tempGUITitle = null;
 let tempGUIElem = null;
+let tempName = null;
 
 const nameDisplay = document.querySelector('[data-display-player-name]');
 const playAgainButton = document.querySelector("[data-play-again-btn]");
@@ -72,7 +73,7 @@ export async function roundEnded({ gameOver = false} = {}) {
   
   if(isGameRunning()) {
     await createHighscore({
-      name: nameDisplay.textContent,
+      name: tempName,
       points: currentPoints,
       color: newColor,
       date: getDate()
@@ -85,6 +86,7 @@ export async function roundEnded({ gameOver = false} = {}) {
 export function setNameDisplayValue({ name, reset = false } = {}) {
   let placeholder = "Anonymous";
   name?.length < 3 || reset ? nameDisplay.textContent = placeholder : nameDisplay.textContent = name;
+  tempName = name;
 }
 
 function playMusic() {
@@ -99,6 +101,7 @@ function playAgain() {
 }
 
 function newPlayer() {
+  tempName = null;
   resetGameValues();
   setTimeout(() => {
     toggleMenuVisibility({
