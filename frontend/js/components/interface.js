@@ -85,7 +85,12 @@ export async function roundEnded({ gameOver = false} = {}) {
 
 export function setNameDisplayValue({ name, reset = false } = {}) {
   let placeholder = "Anonymous";
-  name?.length < 3 || reset ? nameDisplay.textContent = placeholder : nameDisplay.textContent = name;
+  if(name?.length < 3 || reset ) { 
+    nameDisplay.textContent = placeholder
+    tempName = placeholder;
+    return
+  };
+  nameDisplay.textContent = name;
   tempName = name;
 }
 
@@ -99,17 +104,10 @@ function playAgain() {
   playMusic();
 
   toggleFullscreenClassOnStart();
-  
-  /* setTimeout(() => {
-    resetFood();
-    startMovement();
-  }, 400); */
-
   startMovement();
 }
 
 function newPlayer() {
-  tempName = null;
   resetGameValues();
   setTimeout(() => {
     toggleMenuVisibility({
