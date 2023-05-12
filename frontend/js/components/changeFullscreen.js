@@ -33,10 +33,13 @@ function toggleFullscreen() {
   ) {
     document.exitFullscreen();
     screen.orientation.unlock();
+    toggleFullscreenBtn.classList.toggle("fullscreen");
   }
   else {
     gameBoardContainer.requestFullscreen();
     gameBoardContainer.mozFullScreenElement
+    
+    toggleFullscreenBtn.classList.toggle("fullscreen");
     
     if(
       screen.orientation.type === "portrait-primary"   ||
@@ -89,7 +92,11 @@ function toggleColorOfFullscreenBtn() {
     return;
   }
 
-  toggleFullscreenBtn.classList.remove("game-is-running")
+  if(!document.fullscreenElement) {
+    toggleFullscreenBtn.classList.remove("fullscreen");
+  }
+
+  toggleFullscreenBtn.classList.remove("game-is-running");
 }
 
 export function draw() {

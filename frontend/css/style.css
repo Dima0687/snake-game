@@ -249,6 +249,14 @@ body {
   fill: #333;
 }
 
+.control-toggle-elem.fullscreen #icon-compress {
+  display: initial;
+}
+
+.control-toggle-elem.fullscreen #icon-expand {
+  display: none;
+}
+
 .icon {
   position: absolute;
   inset: 0;
