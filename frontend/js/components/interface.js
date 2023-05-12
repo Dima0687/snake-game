@@ -8,7 +8,7 @@ import {
   playGameMusic,
   stopMusicObj,
 } from './sound.js';
-import './changeFullscreen.js';
+import { toggleFullscreenClassOnStart } from './changeFullscreen.js';
 import { createHighscore, getHighscores } from './savement.js';
 import { pointsSetup } from './points.js';
 
@@ -97,7 +97,15 @@ export function playMusic() {
 function playAgain() {
   resetGameValues();
   playMusic();
-  startMovement()
+
+  toggleFullscreenClassOnStart();
+  
+  /* setTimeout(() => {
+    resetFood();
+    startMovement();
+  }, 400); */
+
+  startMovement();
 }
 
 function newPlayer() {
