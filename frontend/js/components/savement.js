@@ -70,7 +70,7 @@ export async function createHighscore({ name = "", date = "", points = 0, color 
         color
       })
     });
-    console.log(res);
+    
     if(!res.ok) {
       throw new Error("Couldn't create a new highscore!");
     }
