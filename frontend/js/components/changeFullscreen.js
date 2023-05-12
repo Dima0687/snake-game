@@ -38,6 +38,7 @@ function toggleFullscreen() {
   else {
     gameBoardContainer.requestFullscreen();
     gameBoardContainer.mozFullScreenElement
+    
     toggleFullscreenBtn.classList.toggle("fullscreen");
     
     if(
