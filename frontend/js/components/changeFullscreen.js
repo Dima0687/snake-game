@@ -7,19 +7,36 @@ const TIME_TILL_MSG_REMOVE_IN_MS = 5000;
 function toggleFullscreen() {
   let orientation = screen.orientation.type;
 
-  if(document.fullscreenElement && isGameRunning())
+  if(
+      (
+        document.fullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement ||
+        document.webkitFullscreenElement
+      ) && 
+      isGameRunning()
+  )
   {
     showMessageBox(
       "You shouldn't do that while the game is running!",
       "Anyway you can press escape or device defaults for leaving the fullscreen!"
     );
   }
-  else if(document.fullscreenElement && !isGameRunning()) {
+  else if(
+      (
+        document.fullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement ||
+        document.webkitFullscreenElement
+      ) && 
+      !isGameRunning()
+  ) {
     document.exitFullscreen();
     screen.orientation.unlock();
   }
   else {
     gameBoardContainer.requestFullscreen();
+    gameBoardContainer.mozFullScreenElement
     
     if(
       screen.orientation.type === "portrait-primary"   ||
