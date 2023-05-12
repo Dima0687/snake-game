@@ -18,13 +18,16 @@ export function getSessionData() {
 
 
 // save highscore on backend
-const url = "/highscores";
+// dev
+let url = "http://localhost:3000/highscores";
+// production
+url = "http://localhost:3000/highscores";
 
 export async function getHighscores({ amount = amountTopXPlayer, dir = -1, showOnly = "points name date color -_id" } = {}) {
   try {
     const res = await fetch(url, {
       method: "POST",
-      cors: "same-origin",
+      cors: "cors",
       cache: "no-cache",
       headers: {
         "Accept": "application/json",
@@ -54,7 +57,7 @@ export async function createHighscore({ name = "", date = "", points = 0, color 
   try {
     const res = await fetch(url, {
       method: "PUT",
-      mode: "same-origin",
+      mode: "cors",
       cache: "no-cache",
       headers: {
         "Content-Type": "application/json",

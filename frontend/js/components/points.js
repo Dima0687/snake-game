@@ -27,6 +27,11 @@ export function getSpeedMultiplier() {
 export function resetPoints() {
   resetHardPlayGameMusic();
   resetPointsSetup();
+  drawPoints();
+}
+
+function drawPoints() {
+  pointsDisplays.forEach(pointsDisplay => pointsDisplay.textContent = getCurrentPoints());
 }
 
 function resetPointsSetup() {
@@ -90,7 +95,7 @@ export function increaseCurrentPoints() {
   }
   playSound("snake-eaten-fruit-sound");
 
-  pointsDisplays.forEach(pointsDisplay => pointsDisplay.textContent = getCurrentPoints());
+  drawPoints();
 }
 
 export function update() {
