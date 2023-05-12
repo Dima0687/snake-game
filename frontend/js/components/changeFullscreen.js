@@ -1,6 +1,6 @@
 import { isGameRunning } from "./input.js";
 
-const toggleFullscreenBtn = document.querySelector("[data-fullscreen-toggle]");
+export const toggleFullscreenBtn = document.querySelector("[data-fullscreen-toggle]");
 const gameBoardContainer = document.querySelector("[data-game-board-container]");
 const TIME_TILL_MSG_REMOVE_IN_MS = 5000;
 

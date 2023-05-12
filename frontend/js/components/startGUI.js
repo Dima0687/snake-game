@@ -1,6 +1,12 @@
 import { startMovement } from './input.js';
-import { toggleMenuVisibility, setNameDisplayValue } from './interface.js';
-import { startGameMusic, startGameSound } from './interface.js';
+import { 
+  toggleMenuVisibility, 
+  setNameDisplayValue,
+  startGameMusic, 
+  startGameSound,
+} from './interface.js';
+import { toggleFullscreenClassOnStart} from './changeFullscreen.js';
+
 // import { pointsSetup } from './points.js';
 
 const startButton = document.querySelector('[data-start-game-btn]');
@@ -18,6 +24,8 @@ function startGame() {
 
   startGameSound();
   startGameMusic();
+  toggleFullscreenClassOnStart();
+  
   // pointsSetup.currentPoints = 2_200_200;
 }
 
