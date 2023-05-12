@@ -12,7 +12,7 @@ import './changeFullscreen.js';
 import { createHighscore, getHighscores } from './savement.js';
 import { pointsSetup } from './points.js';
 
-let soundPlayTimeDelayMs = 600;
+let soundPlayTimeDelayMs = 400;
 let tempGUITitle = null;
 let tempGUIElem = null;
 let tempName = null;
@@ -89,7 +89,7 @@ export function setNameDisplayValue({ name, reset = false } = {}) {
   tempName = name;
 }
 
-function playMusic() {
+export function playMusic() {
   startGameSound();
   startGameMusic();
 }
@@ -119,13 +119,13 @@ function getDate() {
   })
 }
 
-export function startGameMusic() {
+function startGameMusic() {
   setTimeout(() => {
     playGameMusic("during-game-music");    
   }, soundPlayTimeDelayMs);
 }
 
-export function startGameSound() {
+function startGameSound() {
   playSound("game-start-sound");
 }
 

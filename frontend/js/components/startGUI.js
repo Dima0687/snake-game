@@ -2,8 +2,7 @@ import { startMovement } from './input.js';
 import { 
   toggleMenuVisibility, 
   setNameDisplayValue,
-  startGameMusic, 
-  startGameSound,
+  playMusic
 } from './interface.js';
 import { toggleFullscreenClassOnStart} from './changeFullscreen.js';
 import { resetFood } from './food.js';
@@ -21,11 +20,11 @@ export function showStartGUI() {
 function startGame() {
   setPlayerName();
   toggleMenuVisibility({ elem: this });
-  
-  startGameSound();
-  startGameMusic();
+
+  playMusic();
   toggleFullscreenClassOnStart();
   resetFood();
+  
   startMovement();
 
   // pointsSetup.currentPoints = 2_200_200;

@@ -2,13 +2,13 @@ import { soundIsMuted } from "./speaker.js";
 
 const soundList = {
   'during-game-music': './assets/sounds/during-game-music.mp3',
-  'game-speed-red-music': '../assets/sounds/game-speed-red-music.mp3',
-  'game-start-sound': '../assets/sounds/game-start-sound.mp3',
-  'game-over-sound': '../assets/sounds/game-over-sound.mp3',
-  'game-win-sound': '../assets/sounds/game-win-sound.mp3',
-  'snake-crash-sound': '../assets/sounds/snake-crash-sound.wav',
-  'snake-eaten-fruit-sound': '../assets/sounds/snake-eaten-fruit-sound.mp3',
-  'snake-level-up-sound': '../assets/sounds/snake-level-up-sound.mp3',
+  'game-speed-red-music': './assets/sounds/game-speed-red-music.mp3',
+  'game-start-sound': './assets/sounds/game-start-sound.mp3',
+  'game-over-sound': './assets/sounds/game-over-sound.mp3',
+  'game-win-sound': './assets/sounds/game-win-sound.mp3',
+  'snake-crash-sound': './assets/sounds/snake-crash-sound.wav',
+  'snake-eaten-fruit-sound': './assets/sounds/snake-eaten-fruit-sound.mp3',
+  'snake-level-up-sound': './assets/sounds/snake-level-up-sound.mp3',
 }
 
 
