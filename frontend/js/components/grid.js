@@ -25,16 +25,45 @@ export function outsideGrid(position) {
 
 function changeGridDynamically() {
   const { height, width } = gameBoard.getBoundingClientRect();
-  const snakeWidthAndHeightOffset = 20;
-
+  
+  let snakeWidthAndHeightOffset = fixSnakeDimensionsOnResize(height, width);
+  
+  
   const columns = Math.floor(width / snakeWidthAndHeightOffset);
   const rows = Math.floor(height / snakeWidthAndHeightOffset);
 
   document.documentElement.style.setProperty("--columns", columns);
   document.documentElement.style.setProperty("--rows", rows);
 
-  computedColumns = computedRootElement.getPropertyValue("--columns");
-  computedRows = computedRootElement.getPropertyValue("--rows");
+  computedColumns = columns;
+  computedRows = rows;
+}
+
+function fixSnakeDimensionsOnResize(height, width) {
+  let snakeWidthAndHeightOffset = 20;
+  
+  if(height >= 800 || width >= 800) {
+    snakeWidthAndHeightOffset = 30
+  }
+
+  if(height >= 1000 || width >= 1000) {
+    snakeWidthAndHeightOffset = 40;
+  }
+
+  if(height >= 1500 || width >= 1500) {
+    snakeWidthAndHeightOffset = 60;
+  }
+  
+  if(height >= 2000 || width >= 2000) {
+    snakeWidthAndHeightOffset = 100;
+  }
+  
+  if(height >= 3000 || width >= 3000) {
+    snakeWidthAndHeightOffset = 120;
+  }
+
+
+  return snakeWidthAndHeightOffset;
 }
 
 export function getComputedGrid() {

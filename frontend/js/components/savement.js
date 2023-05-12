@@ -1,5 +1,8 @@
 import { createHighscoreList } from "./highscore.js";
 
+let amountTopXPlayer = getComputedStyle(document.documentElement).getPropertyValue("--top-player-amount");
+amountTopXPlayer = Number(amountTopXPlayer.match(/\d{1,}/).join());
+
 let sessionKeyForSound = "snake-sound";
 
 // session storage for muted or not
@@ -17,7 +20,7 @@ export function getSessionData() {
 // save highscore on backend
 const url = "/highscores";
 
-export async function getHighscores({ amount = 10, dir = -1, showOnly = "points name date color -_id" } = {}) {
+export async function getHighscores({ amount = amountTopXPlayer, dir = -1, showOnly = "points name date color -_id" } = {}) {
   try {
     const res = await fetch(url, {
       method: "POST",
@@ -68,13 +71,22 @@ export async function createHighscore({ name = "", date = "", points = 0, color 
       throw new Error("Couldn't create a new highscore!");
     }
 
-    deleteHighscoresNotInTopX();
+    deleteHighscoresNotInTopX({ amount: amountTopXPlayer });
 
   } catch (error) {
     console.error(error);
   }
 }
 
-export async function deleteHighscoresNotInTopX() {
-  await fetch(url, { method: "DELETE" });
+export async function deleteHighscoresNotInTopX({ amount = amountTopXPlayer, showOnly = "_id" } = {}) {
+  await fetch(url, { 
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      amount,
+      showOnly,
+    })
+  });
 }

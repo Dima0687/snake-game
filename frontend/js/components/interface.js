@@ -9,20 +9,22 @@ import {
   stopMusicObj,
 } from './sound.js';
 import './changeFullscreen.js';
-import { getHighscores } from './savement.js';
+import { createHighscore, getHighscores } from './savement.js';
+import { pointsSetup } from './points.js';
 
 let soundPlayTimeDelayMs = 600;
 let tempGUITitle = null;
 let tempGUIElem = null;
 
+const nameDisplay = document.querySelector('[data-display-player-name]');
 const playAgainButton = document.querySelector("[data-play-again-btn]");
 const gameResetButton = document.querySelector("[data-reset-game-btn]");
+const startGameGUI = document.querySelector("[data-start-game]");
 export const gameEndMenu = document.querySelector('[data-game-end-menu]');
-
 // add event listener for the very first time
 showStartGUI();
 
-await getHighscores();
+getHighscores();
 
 export function toggleMenuVisibility({ elem, title = false } = {}) {
   if(title) {
@@ -53,12 +55,11 @@ function resetGameValues() {
   resetSnakeBody();
   resetPoints();
   resetFood();
-
-  startGameSound();
-  startGameMusic();
 }
 
 export function roundEnded({ gameOver = false} = {}) {
+  const { currentPoints, newColor } = pointsSetup;
+
   if(gameOver && isGameRunning()) {
     playSound("snake-crash-sound"); 
     setTimeout(() => {
@@ -68,10 +69,52 @@ export function roundEnded({ gameOver = false} = {}) {
   else if( !gameOver && isGameRunning()) {
     playSound("game-win-sound");
   }
-  // saveHighscore();
+  
+  if(isGameRunning()) {
+    createHighscore({
+      name: nameDisplay.textContent,
+      points: currentPoints,
+      color: newColor,
+      date: getDate()
+    });
+    getHighscores();
+  }
   stopMusicObj();
 }
 
+export function setNameDisplayValue({ name, reset = false } = {}) {
+  let placeholder = "Anonymous";
+  name?.length < 3 || reset ? nameDisplay.textContent = placeholder : nameDisplay.textContent = name;
+}
+
+function playMusic() {
+  startGameSound();
+  startGameMusic();
+}
+
+function playAgain() {
+  resetGameValues();
+  playMusic();
+  startMovement()
+}
+
+function newPlayer() {
+  resetGameValues();
+  setTimeout(() => {
+    toggleMenuVisibility({
+      elem: startGameGUI,
+    });
+  }, 500)
+  setNameDisplayValue({ reset: true });
+}
+
+function getDate() {
+  return new Date().toLocaleDateString("de-DE", { 
+    year: "2-digit",
+    day: "2-digit",
+    month: "2-digit",
+  })
+}
 
 export function startGameMusic() {
   setTimeout(() => {
@@ -84,14 +127,5 @@ export function startGameSound() {
 }
 
 // reset everything for the next round
-playAgainButton.addEventListener("pointerdown", resetGameValues);
-playAgainButton.addEventListener("pointerdown", startMovement);
-playAgainButton.removeEventListener("pointerup", resetGameValues);
-
-
-function reloadPage() {
-  location.reload();
-}
-
-gameResetButton.addEventListener("pointerdown", reloadPage);
-gameResetButton.addEventListener("pointerup", reloadPage);
+playAgainButton.addEventListener("pointerdown", playAgain);
+gameResetButton.addEventListener("pointerdown", newPlayer);

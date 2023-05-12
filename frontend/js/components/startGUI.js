@@ -1,17 +1,14 @@
 import { startMovement } from './input.js';
-import { toggleMenuVisibility } from './interface.js';
+import { toggleMenuVisibility, setNameDisplayValue } from './interface.js';
 import { startGameMusic, startGameSound } from './interface.js';
 // import { pointsSetup } from './points.js';
 
 const startButton = document.querySelector('[data-start-game-btn]');
 const nameInput = document.querySelector('[data-input-player-name]');
-const nameDisplay = document.querySelector('[data-display-player-name]');
 
 export function showStartGUI() {
 
   startButton.addEventListener("pointerdown", startGame);
-  startButton.removeEventListener("pointerup", startGame)
-
 }
 
 function startGame() {
@@ -27,7 +24,7 @@ function startGame() {
 function setPlayerName() {
   let name = nameInput.value;
 
-  name.length < 3 ? nameDisplay.textContent = "Anonymous" : nameDisplay.textContent = name;
+  setNameDisplayValue({ name });
 
   nameInput.value = "";
 }

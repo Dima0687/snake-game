@@ -1,4 +1,5 @@
 const highscoreContainer = document.querySelector("[data-highscore-container]")
+let lastHighscoreRender;
 
 export function createHighscoreList(rawHighscores) {
   const highscores = rawHighscores.reduce((formattedDataArray, rawData) => {
@@ -57,3 +58,42 @@ function createElement( { type, className, title, color } = {}) {
 function updateDOMHighscoreList(highscores) {
   highscoreContainer.replaceChildren(...highscores);
 }
+
+
+
+highscoreContainer.addEventListener("click",  function() {
+  console.log(
+    this.scrollHeight,
+    Math.ceil(this.scrollTop),
+    this.offsetHeight,
+  );
+})
+
+function scrollBackToTop() {
+  
+  if(
+      Math.ceil((highscoreContainer.scrollHeight - highscoreContainer.offsetHeight)) === Math.ceil(highscoreContainer.scrollTop)
+    ) {
+    highscoreContainer.scrollTo({
+      left: 0,
+      top: 0,
+    });
+  }
+}
+
+function draw(currentTime) {
+  if(!lastHighscoreRender) {
+    lastHighscoreRender = currentTime;
+    requestAnimationFrame(draw);
+  }
+  const secondsSinceLastRender = ( currentTime - lastHighscoreRender ) / 1000;
+  requestAnimationFrame(draw);
+
+  if( secondsSinceLastRender < (1 / 5) ) return;
+
+  lastHighscoreRender = currentTime;
+  highscoreContainer.scrollBy(0, 5);
+  scrollBackToTop();
+}
+
+requestAnimationFrame(draw);

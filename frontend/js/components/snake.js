@@ -13,7 +13,7 @@ let snakeBody = createDeepClone(startSnake);
 let newSegments = 0;
 
 export function resetSnakeBody() {
-  snakeBody = createDeepClone(startSnake);
+  snakeBody = setNewCoordsWhileResize();
 }
 
 function createDeepClone(snake) {
@@ -86,7 +86,7 @@ export function setNewCoordsWhileResize() {
     { x: Math.ceil(getComputedGrid().x / 2), y: Math.ceil(getComputedGrid().y / 2 + 2) },
   ];
 
-  resetSnakeBody();
+  return snakeBody
 }
 
 

@@ -19,16 +19,15 @@ function toggleFullscreen() {
   }
   else {
     gameBoardContainer.requestFullscreen();
-
+    
     if(
       screen.orientation.type === "portrait-primary"   ||
       screen.orientation.type === "landscape-secondary" 
-    ) {
-      screen.orientation.lock(orientation);
-    }
+      ) {
+        screen.orientation.lock(orientation);
+      }
   }
 }
-
 
 function showMessageBox(obj) {
   createMessageBox(obj);
@@ -68,10 +67,18 @@ function removeMessageBox(msgBox) {
   }, 2000);
 }
 
+function toggleColorOfFullscreenBtn() {
+  if(isGameRunning() && document.fullscreenElement) {
+    toggleFullscreenBtn.classList.add("game-is-running");
+    return;
+  }
+
+  toggleFullscreenBtn.classList.remove("game-is-running")
+}
+
 export function draw() {
-  isGameRunning() ? toggleFullscreenBtn.classList.add("game-is-running") : toggleFullscreenBtn.classList.remove("game-is-running");
+  toggleColorOfFullscreenBtn();
 }
 
 
-toggleFullscreenBtn.addEventListener("pointerdown", toggleFullscreen);
-toggleFullscreenBtn.removeEventListener("pointerup", toggleFullscreen);
+toggleFullscreenBtn.addEventListener("pointerup", toggleFullscreen);

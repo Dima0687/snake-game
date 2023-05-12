@@ -12,9 +12,13 @@
 
 /* VARIABLES */
 :root {
-  /* grid */
-  --columns: 24; /* this will be changed by js */
-  --rows: 24; /* this will be changed by js */
+  /* 
+    grid
+    this will be changed by js
+    "../js/components/grid.js" fn changeGridDynamically() 
+  */
+  --columns: 24;
+  --rows: 24;
 
   /* font color */
   --body-bg-color: #000;
@@ -22,7 +26,12 @@
   --player-info-color-game-board: var(--icon-fill-color);
   --player-info-color: #87ceeb;
   --game-title-color: #87ceeb;
-  --player-points-color: #0f0; /* will be changed by js */
+  /* 
+    will be changed by js
+    "../js/components/points.js" fn changeColor
+  */
+  --player-points-color: #0f0; 
+
   --game-over-title-color: #f00;
   --game-win-title-color: #00f;
   --input-placeholder: #000;
@@ -30,15 +39,17 @@
   --default-menu-button-color: #000;
   --play-again-button-color: #0a0;
   --play-reset-button-color: rgb(126, 13, 192);
+  --info-msg-color: #f00;
   
   /* background color */
   --game-board-bg-color: #d3d3d3;
   --input-name-bg-color: linear-gradient(90deg, #ccc, #fff);
   --snake-color: #2b6ca4;
   --food-color: #f00;
+  --info-msg-bg-color: #ffffff80;
 
   /* shadow color */
-  --text-shadow: 0 0 4px #000;
+  --text-shadow: 0 0 1vmin #000;
 
   /* border color */
   --border-color: #000;
@@ -48,21 +59,25 @@
   --control-toggle-elem-width: 4vmax;
   --control-toggle-elem-height: var(--control-toggle-elem-width);
 
-  --border-radius: 8px;
+  --border-radius: 2vmin;
   --default-padding: .25em;
   --default-margin: .25em;
   --default-gap: 1em;
 
-  --default-font-size: 1em;
+  --default-font-size: clamp(.8em, 1.4vmax, 8em);
 
 
-  --player-name-width: 60vmin;
+  --player-name-width: 60%;
   --player-name-height: 2.5vmax;
 
   --menu-button-width: max-content;
-  --menu-button-height: 4vmax;
+  --menu-button-height: clamp(4em, 4vmax, 2em);
 
-  /* content variable */
+  /* 
+    content variable
+    changing here, will change in js too
+    "../js/components/savement.js"
+  */
   --top-player-amount: "10";
 }
 
@@ -81,7 +96,7 @@
 /* GENERAL CSS */
 html,
 body {
-  overscroll-behavior: contain;
+  overscroll-behavior: none;
 }
 
 html {
@@ -133,6 +148,7 @@ body {
 }
 
 .player-points {
+  font-size: var(--default-font-size);
   color: var(--player-points-color);
 }
 
@@ -287,6 +303,7 @@ body {
 }
 
 .menu-title {
+  font-size: var(--default-font-size);
   text-transform: uppercase;
   padding-bottom: calc(var(--default-padding) * 4);
   text-shadow: var(--text-shadow);
@@ -303,6 +320,7 @@ body {
 }
 
 #input-player-name {
+  font-size: var(--default-font-size);
   width: var(--player-name-width);
   height: var(--player-name-height);
   border-radius: var(--border-radius);
@@ -350,7 +368,7 @@ body {
 /* SCORE CONTAINER */
 
 #current-player-info {
-  font-size: clamp(.8em, 1.2vmax, 2em);
+  font-size: var(--default-font-size);
   grid-area: 1 / 1 / 2 / 4;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -385,18 +403,24 @@ body {
 }
 
 #highscore-title-container .title {
+  font-size: var(--default-font-size);
   grid-area: 1 / 2 / 2 / 3;
+  width: 100%;
+}
+
+#highscore-title-container .title span {
   position: relative;
 }
 
-#highscore-title-container .title::after {
+#highscore-title-container .title span::after {
   position: absolute;
+  right: -75%;
   content: var(--top-player-amount);
 }
 
 #highscore-heading-container {
   color: var(--icon-fill-color);
-  font-size: clamp(.8em, 1.2vmax, 2em);
+  font-size: var(--default-font-size);
   grid-area: 3 / 1 / 4 / 4;
   width: 100%;
   display: grid;
@@ -443,6 +467,7 @@ body {
 
 
 .highscore {
+  font-size: var(--default-font-size);
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -454,6 +479,7 @@ body {
 /* DYNAMICALLY OVER JS */
 
 .msg-box {
+  font-size: var(--default-font-size);
   position: absolute;
   top: var(--control-container-height);
   right: 0;
@@ -463,14 +489,14 @@ body {
   max-width: calc(100% - 2em);
   height: max-content;
 
-  color: red;
+  color: var(--info-msg-color);
 
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 
   line-height: 1.5em;
-  background-color: #ffffff80;
+  background-color: var(--info-msg-bg-color);
   margin: 0 1em;
   padding: 1em;
   border-radius: 15px;
@@ -480,7 +506,7 @@ body {
   position: absolute;
   width: 1em;
   height: 1em;
-  background-color: #ffffff80;
+  background-color: var(--info-msg-bg-color);
   clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
   top: -0.99em;
   right: 2%;

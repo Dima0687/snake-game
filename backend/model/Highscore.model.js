@@ -29,6 +29,7 @@ const highscoreSchema = mongoose.Schema( {
 
 
 highscoreSchema.statics.getTopXPlayer = async function({ amount = 10, dir = -1, showOnly = "points name date color -_id" } = {}) {
+  
   if( dir === "asc" ) {
     dir = 1
   }
@@ -39,8 +40,9 @@ highscoreSchema.statics.getTopXPlayer = async function({ amount = 10, dir = -1, 
   return await this.find({}, showOnly).sort({ points: dir, createdAt: 1 }).limit(amount);
 }
 
-highscoreSchema.statics.delPlayerNotInTopX = async function() {
-  const arrayTopXPlayer = await this.getTopXPlayer({ showOnly: "_id" });
+highscoreSchema.statics.delPlayerNotInTopX = async function({ amount = 10, showOnly = "_id" } = {}) {
+  
+  const arrayTopXPlayer = await this.getTopXPlayer({ amount, showOnly });
   return await this.deleteMany({ _id: { $nin: arrayTopXPlayer } } );
 }
 

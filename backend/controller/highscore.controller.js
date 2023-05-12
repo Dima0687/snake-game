@@ -33,7 +33,7 @@ export async function createHighscore(req, res, next) {
 
 export async function deleteHighscoresNotInTopX(req, res, next) {
   try {
-    const { acknowledged } = await HighscoreModel.delPlayerNotInTopX();
+    const { acknowledged } = await HighscoreModel.delPlayerNotInTopX(req.body);
 
     if(acknowledged) {
       res.sendStatus(StatusCodes.OK);

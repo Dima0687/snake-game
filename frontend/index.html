@@ -32,7 +32,7 @@
     <div id="game-board-container" data-game-board-container>
       <!-- CONTROL BUTTONS -->
       <section id="control-container">
-        <button class="control-toggle-elem" id="speaker-btn" data-speaker>
+        <button aria-label="speaker" class="control-toggle-elem" id="speaker-btn" data-speaker>
           <svg
             class="icon" 
             id="icon-speaker-off"
@@ -51,7 +51,7 @@
           </svg>
         </button>
         <p class="player-info small">Points: <span class="player-points small" data-player-points>0</span></p>
-        <button class="control-toggle-elem" id="fullscreen-toggle-btn" data-fullscreen-toggle>
+        <button aria-label="fullscreen toggle" class="control-toggle-elem" id="fullscreen-toggle-btn" data-fullscreen-toggle>
           <svg
             class="icon" 
             id="icon-compress"
@@ -77,7 +77,7 @@
       <section class="menu-container show" id="start-game-menu" data-start-game>
         <h1 class="menu-title" id="start-game-title">snake game</h1>
         <input type="text" id="input-player-name" data-input-player-name placeholder="Player name...">
-        <button title="start game" class="menu-button start" data-start-game-btn>
+        <button aria-label="start game" class="menu-button start" data-start-game-btn>
           <span></span>
           <span></span>
           <span></span>
@@ -89,14 +89,14 @@
       <section class="menu-container" data-game-end-menu>
         <h2 class="menu-title"><span id="game-over-title" class="game-end-title" data-game-over-title>game over</span><span id="game-win-title" class="game-end-title" data-game-win-title>win</span></h2>
         <p class="player-info small">Points: <span class="player-points small" data-player-points>0</span></p>
-        <button title="play again" class="menu-button again" data-play-again-btn>
+        <button aria-label="play again" class="menu-button again" data-play-again-btn>
           <span></span>
           <span></span>
           <span></span>
           <span></span>
           play again
         </button>
-        <button title="new player" class="menu-button reset" data-reset-game-btn>
+        <button aria-label="new player" class="menu-button reset" data-reset-game-btn>
           <span></span>
           <span></span>
           <span></span>
@@ -115,7 +115,7 @@
       </article>
       <!-- HOW MUCH PLAYER IN HIGHSCORE TITLE -->
       <aside id="highscore-title-container">
-        <h2 class="title">top</h2>
+        <h2 class="title"><span>top</span></h2>
       </aside>
       <!-- HIGHSCORE HEADINGS -->
       <article id="highscore-heading-container">
@@ -125,11 +125,6 @@
       </article>
       <!-- HIGHSCORES -->
       <article id="highscore-container" data-highscore-container>
-        <p class="highscore">
-          <span class="date">28.12.22</span>
-          <span class="name">Dima</span>
-          <span class="points">200</span>
-        </p>
       </article>
     </section>
   </main>
