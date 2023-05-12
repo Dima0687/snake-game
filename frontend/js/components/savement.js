@@ -21,7 +21,7 @@ export function getSessionData() {
 // dev
 let url = "http://localhost:3000/highscores";
 // production
-url = "http://localhost:3000/highscores";
+url = "https://snake-game-backend-j5wn.onrender.com";
 
 export async function getHighscores({ amount = amountTopXPlayer, dir = -1, showOnly = "points name date color -_id" } = {}) {
   try {
