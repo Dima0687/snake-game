@@ -37,8 +37,7 @@ function toggleFullscreen() {
   }
   else {
     gameBoardContainer.requestFullscreen();
-    gameBoardContainer.mozFullScreenElement
-    
+
     toggleFullscreenBtn.classList.toggle("fullscreen");
     
     if(
@@ -100,7 +99,13 @@ function toggleColorOfFullscreenBtn() {
 }
 
 export function toggleFullscreenClassOnStart() {
-  if(!document.fullscreenElement) {
+  if(
+      !document.fullscreenElement ||
+      !document.mozFullScreenElement ||
+      !document.msFullscreenElement ||
+      !document.webkitFullscreenElement
+  ) {
+    gameBoardContainer.requestFullscreen();
     toggleFullscreenBtn.classList.add("fullscreen");
   }
 }

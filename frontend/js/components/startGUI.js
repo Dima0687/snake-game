@@ -19,13 +19,13 @@ export function showStartGUI() {
 
 function startGame() {
   setPlayerName();
-  startMovement();
   toggleMenuVisibility({ elem: this });
-
+  
   startGameSound();
   startGameMusic();
   toggleFullscreenClassOnStart();
-  
+  startMovement();
+
   // pointsSetup.currentPoints = 2_200_200;
 }
 
