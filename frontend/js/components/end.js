@@ -4,7 +4,7 @@ import { stopMovement } from "./input.js";
 import { getCurrentPoints } from "./points.js";
 import { showGameOverGUI } from "./gameOverGUI.js";
 import { showWinGUI } from "./gameWinGUI.js";
-
+import { WIN_CONDITION_SCORE } from './points.js';
 // GAME OVER
 export function checkDeath() {
   let gameOver = outsideGrid( getSnakeHead()) || snakeIntersection();
@@ -16,7 +16,7 @@ export function checkDeath() {
 
 
 // WIN
-const WIN_CONDITION_SCORE = 3000000;
+
 export function checkWin() {
   let gameWon = getCurrentPoints() >= WIN_CONDITION_SCORE;
   

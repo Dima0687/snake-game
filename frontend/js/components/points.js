@@ -1,6 +1,8 @@
 import { playSound, playGameMusic } from "./sound.js";
 
-const SPEED_UPS = [ 0, 50, 900, 15300, 168300, 1346400];
+export const WIN_CONDITION_SCORE = 30000;
+
+const SPEED_UPS = [ 0, 50, 200, 1000, 5000, 15000];
 const COLOR_INDICATORS = [ "#0f0", "#33CCFF", "#ff0", "#f40", "#f00", "#90f"];
 const pointsDisplays = document.querySelectorAll("[data-player-points]");
 
